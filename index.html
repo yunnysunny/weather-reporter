@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>天气预报</title>
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>   
+  <script src="js/sjs.js"></script>
+  <style type="text/css">
+	#container{border:1px solid #42AAE7;/*display:none;*/font-size:12px;font-family:'Microsoft YaHei', Arial, Helvetica, sans-serif;}
+	#dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;}
+	#weatherDetail{height:75px;}
+	.sub{float:left;height:100%;width:20%;text-align:center;}	
+	#city {font-weight:bold;font-size:25px;margin:auto;line-height:75px;color:#42AAE7;}
+	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;width:50%;}
+  </style>
+ </head>
+
+ <body>
+ <div id="container">
+	<div  id="tody">
+		<div id="dateArea">今天：<span id="dateNow"></span></div>
+		<div id="weatherDetail">
+			<div class="sub">
+				<img  id="weatherImg" src="" /><br />
+				<span id="weathDescription"></span>
+			</div>
+			<div class="sub" id="city"></div>
+			<div class="sub" id="tempArea">
+				<span id="temp"></span><br />
+				<span id="wind"></span>
+			</div>
+		<div>
+	<div>
+	
+ </div>
+  <script language="javascript" src="js/weather_process.js"></script>
+ </body>
+</html>
