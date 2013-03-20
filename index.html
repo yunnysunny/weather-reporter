@@ -16,15 +16,33 @@
 	#city {font-weight:bold;font-size:25px;margin:auto;line-height:75px;color:#42AAE7;width:20%;}
 	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;}
 	.clear {clear:both}
-	#otherDates {height:150px;}
 	.sub2{float:left;height:100%;width:30%;margin:auto;text-align:center;}
 	.dayName{font-weight:bold;font-size:14px;}
 	.temp{font-size:13px;}
+	/** 清浮动 **/
+	.clearfix:after{
+		content:".";
+		display:block;
+		height:0;
+		clear:both;
+		visibility:hidden;
+	}
+	.clearfix{
+		display:inline-block;
+	}
+	/* Hides from IE-mac \*/
+	* html .clearfix{
+		height:1%;
+	}
+	.clearfix{
+		display:block;
+	}
+	#loaderImage{position:absolute;width:64px;height:64px;margin:auto;top:50%;margin-top:-32px;left:50%;margin-left:-32px;}
   </style>
  </head>
 
  <body>
- <div id="container">
+ <div id="container" class="clearfix">
 	<div  id="tody">
 		<div class="dateArea">今天：<span id="dateNow"></span></div>
 		<div id="weatherDetail">
@@ -64,6 +82,8 @@
 		</div>
 	</div>
  </div>
-  <script language="javascript" src="js/weather_process.js"></script>
+ <div id="loaderImage"></div>
+ <script language="javascript" src="js/loadding.js"></script>
+ <script language="javascript" src="js/weather_process.js"></script>
  </body>
 </html>

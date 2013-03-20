@@ -31,6 +31,7 @@ function getWeather(cityObj) {
 				}				
 				
 				SJS.show(SJS.$('container'));
+				stopAnimation();
 			}
 			else
 			{
