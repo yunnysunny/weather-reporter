@@ -9,22 +9,27 @@
   <script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>   
   <script src="js/sjs.js"></script>
   <style type="text/css">
-	#container{border:1px solid #42AAE7;/*display:none;*/font-size:12px;font-family:'Microsoft YaHei', Arial, Helvetica, sans-serif;}
-	#dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;}
+	#container{border:1px solid #42AAE7;display:none;font-size:12px;font-family:"Microsoft YaHei", Arial, Helvetica, sans-serif;}
+	.dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;padding-left:10px;}
 	#weatherDetail{height:75px;}
-	.sub{float:left;height:100%;width:20%;text-align:center;}	
-	#city {font-weight:bold;font-size:25px;margin:auto;line-height:75px;color:#42AAE7;}
-	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;width:50%;}
+	.sub{float:left;height:100%;width:40%;text-align:center;}	
+	#city {font-weight:bold;font-size:25px;margin:auto;line-height:75px;color:#42AAE7;width:20%;}
+	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;}
+	.clear {clear:both}
+	#otherDates {height:150px;}
+	.sub2{float:left;height:100%;width:30%;margin:auto;text-align:center;}
+	.dayName{font-weight:bold;font-size:14px;}
+	.temp{font-size:13px;}
   </style>
  </head>
 
  <body>
  <div id="container">
 	<div  id="tody">
-		<div id="dateArea">今天：<span id="dateNow"></span></div>
+		<div class="dateArea">今天：<span id="dateNow"></span></div>
 		<div id="weatherDetail">
 			<div class="sub">
-				<img  id="weatherImg" src="" /><br />
+				<img  id="weatherImg1" src="" /><img  id="weatherImg2" src="" /><br />
 				<span id="weathDescription"></span>
 			</div>
 			<div class="sub" id="city"></div>
@@ -32,9 +37,32 @@
 				<span id="temp"></span><br />
 				<span id="wind"></span>
 			</div>
-		<div>
-	<div>
-	
+		</div>		
+	</div>
+	<div class="clear dateArea">后三天天气</div>
+	<div id="otherDates">
+		<div class="sub2">
+			<span class="dayName">明天</span><br />
+			<img src="" /><img src="" /><br />
+			<span class="temp"></span><br />
+			<span class="description"></span><br />
+			<span class="wind"></span>
+		</div>
+		<div class="sub2">
+			<span class="dayName">后天</span><br />
+			<img src="" /><img src="" /><br />
+			<span class="temp"></span><br />
+			<span class="description"></span><br />
+			<span class="wind"></span>
+		</div>
+		<div class="sub2">
+			<span class="dayName">大后天</span><br />
+			<img src="" /><img src="" /><br />
+			<span class="temp"></span><br />
+			<span class="description"></span><br />
+			<span class="wind"></span>
+		</div>
+	</div>
  </div>
   <script language="javascript" src="js/weather_process.js"></script>
  </body>
