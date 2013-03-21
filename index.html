@@ -11,7 +11,7 @@
   <style type="text/css">
 	#container{border:1px solid #42AAE7;display:none;font-size:12px;font-family:"Microsoft YaHei", Arial, Helvetica, sans-serif;}
 	.dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;padding-left:10px;}
-	#weatherDetail{height:75px;}
+	#weatherDetail{height:75px;margin-top:10px;}
 	.sub{float:left;height:100%;width:40%;text-align:center;}	
 	#city {font-weight:bold;font-size:25px;margin:auto;line-height:75px;color:#42AAE7;width:20%;}
 	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;}
@@ -37,13 +37,14 @@
 	.clearfix{
 		display:block;
 	}
-	#loaderImage{position:absolute;width:64px;height:64px;margin:auto;top:50%;margin-top:-32px;left:50%;margin-left:-32px;}
+	#loaderImage{position:absolute;width:64px;height:64px;top:50%;margin-top:-32px;left:50%;margin-left:-32px;}
+	#otherDates{margin-top:10px;}
   </style>
  </head>
 
  <body>
  <div id="container" class="clearfix">
-	<div  id="tody">
+	<div  id="today">
 		<div class="dateArea">今天：<span id="dateNow"></span></div>
 		<div id="weatherDetail">
 			<div class="sub">
