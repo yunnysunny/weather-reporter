@@ -1,0 +1,90 @@
+<html>
+	<head>
+		<script src="http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
+		<script type="text/javascript" 
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
+		</script>
+		<style type="text/css">
+			.weather_parent{
+				
+				
+			}
+			.weather_cityName{
+				
+
+			}
+			.weather_dateNow{
+
+			}
+			.weather_desc{
+
+			}
+			.weather_img1{
+
+			}
+			.weather_img2{
+
+			}
+			.weather_temp{
+
+			}
+			.weather_wind{
+
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<div id="test">asd</div>
+	 </div>
+
+
+ 	<script language="javascript" src="js/weather_base.js"></script>
+	<script type="text/javascript">
+
+		$.fn.simpleWeather = function(options){
+			defaultops = {
+				cityId : '',
+				dataUrl :''
+			};
+
+			var weather = new Object();
+			weather.opts = $.extend(defaultops,options);
+			weather._this = $(this);
+
+			weather.init = function(){
+				$.getJSON(weather.opts.dataUrl,{cityId:weather.opts.cityId},function(data){
+					var infos = data.weatherinfo;
+
+					var cityName = "<span class='weather_cityName'>" + infos.city + "</span>";
+					var dateNow = "<span class='weather_dateNow'>" 
+						+infos.date_y + infos.week + "</span>";
+					var weatherDes = "<span class='weather_desc'>" 
+						+ infos.weather1 + "</span>";
+					var img1 = "<img src='"+IMG_BASE_URL + infos.img1 +".gif' class='weather_img1' />";
+					var img2 = "<img src='"+IMG_BASE_URL + infos.img2 +".gif' class='weather_img2' />";
+					var temp = "<span class='weather_temp'>" +infos.temp1+"</span>";
+					var wind = "<span class='weather_wind'>" +infos.wind1+"</span>";
+
+					weather._this.addClass('weather_parent');
+
+					weather._this.html(cityName + dateNow + weatherDes + img1 + img2 + temp + wind);
+
+				});
+			};
+
+			weather.reload = weather.init;
+			weather.init();
+			return weather;
+		};
+
+		
+		$(function(){
+			$("#test").simpleWeather({cityId:'beijing',dataUrl:'test.json'});
+		});
+	
+	</script>
+	</body>
+
+</html>
