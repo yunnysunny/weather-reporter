@@ -6,18 +6,25 @@
 		</script>
 		<style type="text/css">
 			.weather_parent{
-				
-				
+				border: 1px solid black;
+				width:200px;
 			}
 			.weather_cityName{
-				
 
+				font-weight: bold;
+				font-size: 25px;
+				margin: auto;
+				line-height: 75px;
+				color: #42AAE7;
 			}
 			.weather_dateNow{
-
+				line-height: 18px;
+				float: right;
+				font-size: 14px;
+				font-weight: bold;
 			}
 			.weather_desc{
-
+				
 			}
 			.weather_img1{
 
@@ -57,19 +64,19 @@
 				$.getJSON(weather.opts.dataUrl,{cityId:weather.opts.cityId},function(data){
 					var infos = data.weatherinfo;
 
-					var cityName = "<span class='weather_cityName'>" + infos.city + "</span>";
-					var dateNow = "<span class='weather_dateNow'>" 
-						+infos.date_y + infos.week + "</span>";
-					var weatherDes = "<span class='weather_desc'>" 
-						+ infos.weather1 + "</span>";
+					var cityName = "<div class='weather_cityName'>" + infos.city + "</div>";
+					var dateNow = "<div class='weather_dateNow'>" 
+						+infos.date_y + infos.week + "</div>";
+					var weatherDes = "<div class='weather_desc'>" 
+						+ infos.weather1 + "</div>";
 					var img1 = "<img src='"+IMG_BASE_URL + infos.img1 +".gif' class='weather_img1' />";
 					var img2 = "<img src='"+IMG_BASE_URL + infos.img2 +".gif' class='weather_img2' />";
-					var temp = "<span class='weather_temp'>" +infos.temp1+"</span>";
-					var wind = "<span class='weather_wind'>" +infos.wind1+"</span>";
+					var temp = "<div class='weather_temp'>" +infos.temp1+"</div>";
+					var wind = "<div class='weather_wind'>" +infos.wind1+"</div>";
 
 					weather._this.addClass('weather_parent');
 
-					weather._this.html(cityName + dateNow + weatherDes + img1 + img2 + temp + wind);
+					weather._this.html(dateNow + cityName + img1 + img2  +  temp + weatherDes  + wind);
 
 				});
 			};
