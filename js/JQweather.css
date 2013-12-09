@@ -1,0 +1,55 @@
+.weather_parent{
+	width:384px;
+}
+
+.weather_cityName{
+	text-align: center;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 18px;
+	margin-left:  20px;
+	line-height: 20px;
+	color: #0273c2;
+	float: left;
+	display: block;
+	width:100px;
+}
+
+.weather_content{
+	font-size: 16px;
+	width: 240px;
+	margin-left:  20px;
+	float: left;
+	line-height: 20px;
+}
+.weather_dateNow{
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+	float: right;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 20px;
+	width: 240px;
+}
+
+
+.weather_desc{
+	
+}
+
+.weather_img1{
+	margin-left:  20px;
+	height: 80px;
+	width: 100px;
+	float: left;
+}
+.weather_img2{
+
+}
+.weather_temp{
+	
+}
+.weather_xiche{
+	
+}
