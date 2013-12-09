@@ -8,6 +8,8 @@ The above copyright notice and this permission notice shall be included in all c
 * @lisence MIT
 * @author gaoyang  <yunnysunny@gmail.com>
 * @date 2012.3.18
+* @author xuechong  <xuechong87@gmail.com>
+* @date 2012.12.9
 */
 var IMG_BASE_URL = 'http://m.weather.com.cn/img/b';
 
@@ -469,7 +471,6 @@ $.fn.simpleWeather = function(options){
 	var weather = new Object();
 	weather.opts = $.extend(defaultops,options);
 	weather._this = $(this);
-	console.log(weather.opts.cityId);
 	weather.init = function(){
 		$.getJSON(weather.opts.dataUrl,{cityId:weather.opts.cityId},function(data){
 			var infos = data.weatherinfo;
@@ -479,14 +480,14 @@ $.fn.simpleWeather = function(options){
 				+infos.date_y + infos.week + "</div>";
 			var weatherDes = "<div class='weather_desc weather_content'>" 
 				+ infos.weather1+"&nbsp;"+infos.wind1 + "</div>";
-			var img1 = "<img src='" + IMG_BASE_URL + infos.img1 + ".gif' class='weather_img1' />";
+			var img1 = "<div class='weather_img1' ><img src='" + IMG_BASE_URL + infos.img1 + ".gif'  /></div>";
 			//var img2 = "<img src='" + IMG_BASE_URL + infos.img2 + ".gif' class='weather_img2' />";
 			var temp = "<div class='weather_temp weather_content'>" + infos.temp1 + "</div>";
 			var wind = "<div class='weather_xiche weather_content'>" + infos.index_xc + "洗车</div>";
 
 			weather._this.addClass('weather_parent');
 
-			weather._this.html(dateNow + cityName + img1  +  temp + weatherDes  + wind);
+			weather._this.html(cityName + dateNow  + img1  +  temp + weatherDes  + wind);
 
 		});
 	};
