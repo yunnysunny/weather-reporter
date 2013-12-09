@@ -4,41 +4,7 @@
 		<script type="text/javascript" 
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js">
 		</script>
-		<style type="text/css">
-			.weather_parent{
-				border: 1px solid black;
-				width:200px;
-			}
-			.weather_cityName{
-
-				font-weight: bold;
-				font-size: 25px;
-				margin: auto;
-				line-height: 75px;
-				color: #42AAE7;
-			}
-			.weather_dateNow{
-				line-height: 18px;
-				float: right;
-				font-size: 14px;
-				font-weight: bold;
-			}
-			.weather_desc{
-				
-			}
-			.weather_img1{
-
-			}
-			.weather_img2{
-
-			}
-			.weather_temp{
-
-			}
-			.weather_wind{
-
-			}
-		</style>
+		<link rel="stylesheet" type="text/css" href="js/JQweather.css">
 	</head>
 
 	<body>
@@ -47,48 +13,11 @@
 	 </div>
 
 
- 	<script language="javascript" src="js/weather_base.js"></script>
+ 	<script language="javascript" src="js/JQweatherplugin.js"></script>
 	<script type="text/javascript">
-
-		$.fn.simpleWeather = function(options){
-			defaultops = {
-				cityId : '',
-				dataUrl :''
-			};
-
-			var weather = new Object();
-			weather.opts = $.extend(defaultops,options);
-			weather._this = $(this);
-
-			weather.init = function(){
-				$.getJSON(weather.opts.dataUrl,{cityId:weather.opts.cityId},function(data){
-					var infos = data.weatherinfo;
-
-					var cityName = "<div class='weather_cityName'>" + infos.city + "</div>";
-					var dateNow = "<div class='weather_dateNow'>" 
-						+infos.date_y + infos.week + "</div>";
-					var weatherDes = "<div class='weather_desc'>" 
-						+ infos.weather1 + "</div>";
-					var img1 = "<img src='"+IMG_BASE_URL + infos.img1 +".gif' class='weather_img1' />";
-					var img2 = "<img src='"+IMG_BASE_URL + infos.img2 +".gif' class='weather_img2' />";
-					var temp = "<div class='weather_temp'>" +infos.temp1+"</div>";
-					var wind = "<div class='weather_wind'>" +infos.wind1+"</div>";
-
-					weather._this.addClass('weather_parent');
-
-					weather._this.html(dateNow + cityName + img1 + img2  +  temp + weatherDes  + wind);
-
-				});
-			};
-
-			weather.reload = weather.init;
-			weather.init();
-			return weather;
-		};
-
 		
 		$(function(){
-			$("#test").simpleWeather({cityId:'beijing',dataUrl:'test.json'});
+			$("#test").simpleWeather({dataUrl:'test.json'});
 		});
 	
 	</script>
