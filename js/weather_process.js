@@ -10,6 +10,7 @@ The above copyright notice and this permission notice shall be included in all c
 */
 var IMG_BASE_URL = 'http://m.weather.com.cn/img/b';
 
+
 var CITYS = {
 	'北京':101010100,
 	'朝阳':101010300,
@@ -458,11 +459,11 @@ var CITYS = {
 	'盘锦':101071301,
 	'大连':101070201
 };
-function getWeather(cityId) {
+function getWeather(city) {
 	//if (typeof cityObj == 'object')
 	//{
-		//var cityId = cityObj['i'][0]['i'];
-		SJS.sendRequest('post','get-weather-data.php','cityId='+cityId,function(data) {
+		var cityId = CITYS[city];
+		SJS.sendRequest('post','get-weather-data.php','cityId='+cityId+'&action=showWeather',function(data) {
 			
 			if (data.indexOf('error,') == -1)
 			{
@@ -491,6 +492,7 @@ function getWeather(cityId) {
 				
 				SJS.show(SJS.$('container'));
 				stopAnimation();
+				getPM2_5(city);
 			}
 			else
 			{
@@ -500,5 +502,35 @@ function getWeather(cityId) {
 	//}
 }
 
-getWeather(CITYS[remote_ip_info.city]);
+function getPM2_5(city) {
+	SJS.sendRequest('post','get-weather-data.php','city='+city+'&action=showPM2_5',function(data) {
+		var quality = '';
+		var qualiteArea = SJS.$('quality');
+		if (data.indexOf('error') == -1) {
+			data = eval('('+data+')');
+			if (data.length > 0) {
+				quality = data[0].quality;
+				var pm25Value = data[0].pm2_5;
+				if (pm25Value <= 50) {
+					qualiteArea.className = 'you';
+				} else if (pm25Value <= 100 ) {
+					qualiteArea.className = 'liang';
+				} else if (pm25Value <= 150 ) {
+					qualiteArea.className = 'zhong';
+				} else {
+					qualiteArea.className = 'cha';
+				}
+			}
+			
+		} else {
+			quality = '获取失败';
+			qualiteArea.className = 'cha';
+		}
+		qualiteArea.innerHTML = quality;
+		SJS.show(qualiteArea,'inline');
+	});
+}
+
+getWeather(remote_ip_info.city);
+
 	

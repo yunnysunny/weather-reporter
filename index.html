@@ -14,7 +14,13 @@
 	.dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;padding-left:10px;}
 	#weatherDetail{height:75px;margin-top:10px;}
 	.sub{float:left;height:100%;width:40%;text-align:center;}	
-	#city {font-weight:bold;font-size:25px;margin:auto;line-height:75px;color:#42AAE7;width:20%;}
+	#secondArea {margin:auto;width:20%;}
+	#secondArea #city {font-weight:bold;font-size:25px;color:#42AAE7;}
+	#secondArea #quality{background: url('images/pm25.png') no-repeat;height:20px;color:#fff;line-height:20px;padding: 2px 8px 4px 6px;}
+	#secondArea #quality.you {background-position: 0 -8px;}
+	#secondArea #quality.liang {background-position: 0 -36px;}
+	#secondArea #quality.zhong {background-position: 0 -67px;}
+	#secondArea #quality.cha {background-position: 0 -97px;}
 	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;}
 	.clear {clear:both}
 	.sub2{float:left;height:100%;width:33%;margin:auto;text-align:center;}
@@ -52,7 +58,11 @@
 				<img  id="weatherImg1" src="" /><img  id="weatherImg2" src="" /><br />
 				<span id="weathDescription"></span>
 			</div>
-			<div class="sub" id="city"></div>
+			<div class="sub" id="secondArea">
+				<span id="city"></span><br /><br />
+				<span>空气质量：</span>
+				<span id="quality" style="display:none;"></span>
+			</div>
 			<div class="sub" id="tempArea">
 				<span id="temp"></span><br />
 				<span id="wind"></span>
