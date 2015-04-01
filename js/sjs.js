@@ -237,8 +237,41 @@
 		}
 	}
 	window[packageName]['usingAll'] = usingAll;
+	
+	var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
+	function randStr(num) {
+		var len = chars.length;
+		var str = '';
+		for (var i=0;i<num;i++) {
+			var index = Math.floor(Math.random()*len);
+			str += chars[index];
+		}
+		return 'SJS_' + new Date().getTime() + '_' + str;
+	}
 
 	function sendRequest(method,url,content,callback,type,process,error){
+		
+		if (type == 'jsonp') {
+			var jsonpFunName = randStr(8);
+			window[packageName][jsonpFunName] = callback;
+			var jsonpParam = 'callback=' + packageName + '.' + jsonpFunName;
+			if (content) {
+				content += '&' + jsonpParam;
+			} else {
+				content = jsonpParam;
+			}
+			url += '?' + content;
+			var head = document.getElementsByTagName("head")[0]; 
+			var js = document.createElement("script"); 
+			js.src = url; 
+			js.onload = js.onreadystatechange = function(){ 
+				if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") { 
+					head.removeChild(js); 
+				}
+			}; 
+			head.appendChild(js);
+			return;
+		}
 		http_request=false;
 		if(window.XMLHttpRequest){
 			http_request=new XMLHttpRequest();
@@ -261,14 +294,21 @@
 			}
 			return false;
 		}
+		
 
 		http_request.onreadystatechange=function() {
 			if (http_request.readyState == 4) {
 
 				if (http_request.status == 200 || http_request.status == 304) {
 					var resp = http_request.responseText;
-					if (type && type == 'json') {
-						callback(typeof(resp) == 'object' ? resp : eval('(' + resp + ')'));
+					if (type) {
+						if (type == 'json') {
+							callback(typeof(resp) == 'object' ? resp : eval('(' + resp + ')'));
+						} else if (type == 'jsonp') {
+						} else {
+							callback(resp);
+						}
+						
 					} else {
 						callback(resp);
 					}					
@@ -296,6 +336,7 @@
 			}
 			return false;
 		}
+		
 		http_request.send(content);
 	}
 	window[packageName]['sendRequest'] = sendRequest;
