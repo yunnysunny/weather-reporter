@@ -37,7 +37,7 @@ function getWeather(city) {
 				imgs[1].setAttribute('src',info.nightPictureUrl);
 				SJS.getElementsByClassName(dayNow,'span','temp')[0].innerHTML = info.temperature;
 				SJS.getElementsByClassName(dayNow,'span','description')[0].innerHTML = info.weather;
-				SJS.getElementsByClassName(dayNow,'span','wind')[0].innerHTML = info.wind;
+				SJS.getElementsByClassName(dayNow,'span','wind')[0].innerHTML = info.wind;		
 			}				
 			
 			SJS.show(SJS.$('container'));
@@ -69,6 +69,7 @@ function getPM2_5(pm25Value) {
 			qualiteArea.className = 'cha';
 			quality = '差';
 		}	
+		SJS.$('pm25').innerHTML = pm25Value;
 	} else {
 		quality = '获取失败';
 		qualiteArea.className = 'cha';
