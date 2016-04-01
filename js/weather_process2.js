@@ -8,7 +8,7 @@ The above copyright notice and this permission notice shall be included in all c
 * @author gaoyang  <yunnysunny@gmail.com>
 * @date 2012.3.18
 */
-var BASE_URL_BAIDU = 'http://api.map.baidu.com/telematics/v3/weather';
+var BASE_URL_BAIDU = window.location.protocol + '//api.map.baidu.com/telematics/v3/weather';
 var BAIDU_AK = '52c2843c2d061b4a40934d09d90bc51d';
 function getWeather(city) {
 	var params = 'ak=' + BAIDU_AK + '&location=' + city + '&output=json';
@@ -79,6 +79,6 @@ function getPM2_5(pm25Value) {
 	
 }
 
-getWeather(remote_ip_info.city);
+getWeather(returnCitySN.cname);
 
 	
