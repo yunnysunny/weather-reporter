@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" name="viewport" />
+  <title>天气预报</title>
+  <meta name="keywords" content="天气预报 PM2.5" />
+  <meta name="description" content="提供4天天气预报，实时温度，pm2.5的信息查看" />
+  <script src="//pv.sohu.com/cityjson?ie=utf-8"></script>   
+  <script src="js/sjs.js"></script>
+  <style type="text/css">
+	#container{border:1px solid #42AAE7;display:none;font-size:12px;font-family:"Microsoft YaHei","微软雅黑","Microsoft JhengHei","华文细黑",Arial, Helvetica, sans-serif;}
+	.dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;padding-left:10px;}
+	#weatherDetail{height:40px;margin-top:10px;}
+	.sub{float:left;height:100%;width:40%;text-align:center;}	
+	#secondArea {margin:auto;width:20%;}
+	#secondArea #city {font-weight:bold;font-size:25px;color:#42AAE7;}
+	
+	#thirdArea {margin:5px auto;width:100%;text-align:center;}
+	#thirdArea #quality{background: url('images/pm25.png') no-repeat;height:20px;color:#fff;line-height:20px;padding: 2px 8px 4px 6px;}
+	#thirdArea #quality.you {background-position: 0 -8px;}
+	#thirdArea #quality.liang {background-position: 0 -36px;}
+	#thirdArea #quality.zhong {background-position: 0 -67px;}
+	#thirdArea #quality.cha {background-position: 0 -97px;}
+	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;}
+	.clear {clear:both}
+	.sub2{float:left;height:100%;width:33%;margin:auto;text-align:center;}
+	.icon-right{margin-left:6px;}
+	.dayName{font-weight:bold;font-size:14px;}
+	.temp{font-size:13px;}
+	/** 清浮动 **/
+	.clearfix:after{
+		content:".";
+		display:block;
+		height:0;
+		clear:both;
+		visibility:hidden;
+	}
+	.clearfix{
+		display:inline-block;
+	}
+	/* Hides from IE-mac \*/
+	* html .clearfix{
+		height:1%;
+	}
+	.clearfix{
+		display:block;
+	}
+	#loaderImage{position:absolute;width:64px;height:64px;top:50%;margin-top:-32px;left:50%;margin-left:-32px;}
+	#otherDates{margin-top:10px;}
+  </style>
+ </head>
+
+ <body>
+ <div id="container" class="clearfix">
+	<div  id="today">
+		<div class="dateArea">今天：<span id="dateNow"></span></div>
+		<div id="weatherDetail">
+			<div class="sub">
+				<img  id="weatherImg1" src="" /><img  id="weatherImg2" class="icon-right" src="" /><br />
+				<span id="weathDescription"></span>
+			</div>
+			<div class="sub" id="secondArea">
+				<span id="city"></span>				
+			</div>
+			<div class="sub" id="tempArea">
+				<span id="temp"></span><br />
+				<span id="wind"></span>
+			</div>
+		</div>
+		<div id="thirdArea">
+			<span>空气质量:</span><span id="pm25"></span>
+			<span id="quality" style="display:none;"></span>
+		</div>
+	</div>
+	<div class="clear dateArea">后三天天气</div>
+	<div id="otherDates">
+		<div class="sub2">
+			<span class="dayName">明天</span><br />
+			<img src="" /><img src=""  class="icon-right" /><br />
+			<span class="temp"></span><br />
+			<span class="description"></span><br />
+			<span class="wind"></span>
+		</div>
+		<div class="sub2">
+			<span class="dayName">后天</span><br />
+			<img src="" /><img src=""  class="icon-right" /><br />
+			<span class="temp"></span><br />
+			<span class="description"></span><br />
+			<span class="wind"></span>
+		</div>
+		<div class="sub2">
+			<span class="dayName">大后天</span><br />
+			<img src="" /><img src=""  class="icon-right" /><br />
+			<span class="temp"></span><br />
+			<span class="description"></span><br />
+			<span class="wind"></span>
+		</div>		
+	</div>
+ </div>
+ <div id="loaderImage"></div>
+  <input type="hidden" id="sign-data" sign="<%=encodeURIComponent(sign)%>" ts="<%=ts%>" />
+
+ <script language="javascript" src="js/loadding.js"></script>
+ <script language="javascript" src="js/weather_process2.js"></script>
+ </body>
+</html>
