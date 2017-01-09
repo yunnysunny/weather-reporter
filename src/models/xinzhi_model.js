@@ -2,7 +2,7 @@ var crypto = require('crypto');
 var config = require('../config');
 const UID = config.xinzhiUid;
 const KEY = config.xinzhiKey;
-const TTL = 10;
+const TTL = 600;
 
 
 exports.genSign = function() {

@@ -6,11 +6,11 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 * @lisence MIT
 * @author gaoyang  <yunnysunny@gmail.com>
-* @date 2012.3.18
+* @date 2017.1.9
 */
 var BASE_URL_API = 'https://api.thinkpage.cn/v3/weather/daily.json';
 var UID = 'UE6651266E';
-var TTL = 10;
+var TTL = 600;
 var BASE_URL_IMG = 'https://www.thinkpage.cn';
 var MAP_WEATHER_IMG = { "晴": "/weather/images/icons/3d_50/3.png", "多云": "/weather/images/icons/3d_50/4.png", "晴间多云": "/weather/images/icons/3d_50/6.png", "大部多云": "/weather/images/icons/3d_50/8.png", "阴": "/weather/images/icons/3d_50/9.png", "阵雨": "/weather/images/icons/3d_50/10.png", "雷阵雨": "/weather/images/icons/3d_50/11.png", "雷阵雨伴有冰雹": "/weather/images/icons/3d_50/12.png", "小雨": "/weather/images/icons/3d_50/13.png", "中雨": "/weather/images/icons/3d_50/14.png", "大雨": "/weather/images/icons/3d_50/15.png", "暴雨": "/weather/images/icons/3d_50/16.png", "大暴雨": "/weather/images/icons/3d_50/17.png", "特大暴雨": "/weather/images/icons/3d_50/18.png", "冻雨": "/weather/images/icons/3d_50/19.png", "雨夹雪": "/weather/images/icons/3d_50/20.png", "阵雪": "/weather/images/icons/3d_50/21.png", "小雪": "/weather/images/icons/3d_50/22.png", "中雪": "/weather/images/icons/3d_50/23.png", "大雪": "/weather/images/icons/3d_50/24.png", "暴雪": "/weather/images/icons/3d_50/25.png", "浮尘": "/weather/images/icons/3d_50/26.png", "扬沙": "/weather/images/icons/3d_50/27.png", "沙尘暴": "/weather/images/icons/3d_50/28.png", "强沙尘暴": "/weather/images/icons/3d_50/29.png", "雾": "/weather/images/icons/3d_50/30.png", "霾": "/weather/images/icons/3d_50/31.png", "风": "/weather/images/icons/3d_50/32.png", "大风": "/weather/images/icons/3d_50/33.png", "飓风": "/weather/images/icons/3d_50/34.png", "热带风暴": "/weather/images/icons/3d_50/35.png", "龙卷风": "/weather/images/icons/3d_50/36.png", "冷": "/weather/images/icons/3d_50/37.png", "热": "/weather/images/icons/3d_50/38.png", "未知": "/weather/images/icons/3d_50/99.png" };
 
