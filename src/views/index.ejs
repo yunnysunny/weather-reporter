@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN">
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no" name="viewport" />
@@ -11,9 +11,10 @@
   <style type="text/css">
 	#container{border:1px solid #42AAE7;display:none;font-size:12px;font-family:"Microsoft YaHei","微软雅黑","Microsoft JhengHei","华文细黑",Arial, Helvetica, sans-serif;}
 	.dateArea{height:18px;line-height:18px;background:#42AAE7;color:#ffffff;font-size:14px;font-weight:bold;padding-left:10px;}
-	#weatherDetail{height:40px;margin-top:10px;}
-	.sub{float:left;height:100%;width:40%;text-align:center;}	
-	#secondArea {margin:auto;width:20%;}
+	#weatherDetail{margin-top:10px;}
+	.sub{/*float:left;width:40%;*/min-height:55px;text-align:center;flex-grow:0;
+    flex-shrink:0;padding:0 10px;box-sizing:border-box;}	
+	#secondArea {/*margin:auto;width:20%;*/flex-grow:1;line-height:55px;}
 	#secondArea #city {font-weight:bold;font-size:25px;color:#42AAE7;}
 	
 	#thirdArea {margin:5px auto;width:100%;text-align:center;}
@@ -24,9 +25,10 @@
 	#thirdArea #quality.cha {background-position: 0 -97px;}
 	#tempArea{font-weight:bold;font-size:14px;padding-top:10px;}
 	.clear {clear:both}
-	.sub2{float:left;height:100%;width:33%;margin:auto;text-align:center;}
+	.sub2{/*float:left;width:33%;margin:auto;*/height:130px;text-align:center;flex-grow:1;margin:10px;box-sizing:border-box;}
+	.sub2 img {padding:10px 0;}
 	.icon-right{margin-left:6px;}
-	.dayName{font-weight:bold;font-size:14px;}
+	.dayName{font-weight:bold;font-size:14px;padding-bottom:10px;}
 	.temp{font-size:13px;}
 	/** 清浮动 **/
 	.clearfix:after{
@@ -48,6 +50,19 @@
 	}
 	#loaderImage{position:absolute;width:64px;height:64px;top:50%;margin-top:-32px;left:50%;margin-left:-32px;}
 	#otherDates{margin-top:10px;}
+    
+    .box-wrap {
+        display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+        display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+        display: -ms-flexbox;      /* TWEENER - IE 10 */
+        display: -webkit-flex;     /* NEW - Chrome */
+        display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+        align-items:center;
+		justify-content:center;
+        flex-wrap: wrap ;
+    }
+    .box-item {
+    }
   </style>
  </head>
 
@@ -55,7 +70,7 @@
  <div id="container" class="clearfix">
 	<div  id="today">
 		<div class="dateArea">今天：<span id="dateNow"></span></div>
-		<div id="weatherDetail">
+		<div id="weatherDetail" class="box-wrap">
 			<div class="sub">
 				<img  id="weatherImg1" src="" class="js-weather-img1"/>
 				<img  id="weatherImg2" class="icon-right js-weather-img2" src="" /><br />
@@ -75,7 +90,7 @@
 		</div>
 	</div>
 	<div class="clear dateArea">后三天天气</div>
-	<div id="otherDates">
+	<div id="otherDates"  class="box-wrap">
 		<div class="sub2">
 			<span class="dayName">明天</span><br />
 			<img src=""  class="js-weather-img1" /><img src=""  class="icon-right js-weather-img2" /><br />

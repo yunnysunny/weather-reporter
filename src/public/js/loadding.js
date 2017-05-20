@@ -7,6 +7,7 @@ var cImageSrc='images/sprites.gif';
 
 var cImageTimeout=false;
 var cAnimationTimeout = false;
+var cTimeoutCleared = false;
 var cIndex=0;
 var cXpos=0;
 var SECONDS_BETWEEN_FRAMES=0;
@@ -26,7 +27,12 @@ function startAnimation(){
 }
 
 function continueAnimation(){
-	
+	if (cAnimationTimeout) {
+		clearTimeout(cAnimationTimeout);
+	}
+	if (cTimeoutCleared) {
+		return;
+	}
 	cXpos += cFrameWidth;
 	//increase the index so we know which frame of our animation we are currently on
 	cIndex += 1;
@@ -39,7 +45,7 @@ function continueAnimation(){
 	
 	document.getElementById('loaderImage').style.backgroundPosition=(-cXpos)+'px 0';
 	
-	cAnimationTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES*1000);
+	cAnimationTimeout = setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES*1000);console.log('set',cAnimationTimeout);
 }
 
 function imageLoader(s, fun)//Pre-loads the sprites image
@@ -54,6 +60,7 @@ function imageLoader(s, fun)//Pre-loads the sprites image
 
 function stopAnimation() {
 	clearTimeout(cAnimationTimeout);
+	cTimeoutCleared = true;
 	document.getElementById('loaderImage').style.display = 'none';
 }
 
