@@ -8,41 +8,55 @@ The above copyright notice and this permission notice shall be included in all c
 * @author gaoyang  <yunnysunny@gmail.com>
 * @date 2012.3.18
 */
-var BASE_URL_BAIDU = window.location.protocol + '//api.map.baidu.com/telematics/v3/weather';
-var BAIDU_AK = '52c2843c2d061b4a40934d09d90bc51d';
+var BASE_URL_BAIDU = window.location.protocol + '//api.caiyunapp.com/v2/TAkhjf8d1nlSlspN/';
+
 function getWeather(city) {
-	var params = 'ak=' + BAIDU_AK + '&location=' + city + '&output=json';
-	SJS.sendRequest('get',BASE_URL_BAIDU,params,function(data) {
+	var dataGeography = cityData['北京'];
+	if (!dataGeography) {
+		console.warn('当前程序未查找到');
+	}
+	var url = BASE_URL_BAIDU + dataGeography.join(',') + '/forecast.jsonp';
+	SJS.sendRequest('get',url,undefined,function(data) {
 		
-		if (data.error == 0)
+		if (data.status === 'ok')
 		{
-			var obj = data.results[0];
-			var weatherInfo = obj.weather_data;
+			var obj = data.result.daily;
+			var temperature = obj.temperature;
+			var weatherInfo = obj.skycon;
+			var windInfo = obj.wind;
+
 			var todayWeather = weatherInfo[0];
 			SJS.$('dateNow').innerHTML = todayWeather.date;
-			SJS.$('weathDescription').innerHTML = todayWeather.weather;
-			SJS.$('city').innerHTML = obj.currentCity;
-			SJS.$('weatherImg1').setAttribute('src',todayWeather.dayPictureUrl);
-			SJS.$('weatherImg2').setAttribute('src',todayWeather.nightPictureUrl);
-			SJS.$('temp').innerHTML = todayWeather.temperature;
-			SJS.$('wind').innerHTML = todayWeather.wind;
+			SJS.$('weathDescription').innerHTML = todayWeather.value;
+			SJS.$('city').innerHTML = city;
+			//SJS.$('weatherImg1').setAttribute('src',todayWeather.dayPictureUrl);
+			//SJS.$('weatherImg2').setAttribute('src',todayWeather.nightPictureUrl);
+
+			var todayTemperature = temperature[0];
+			SJS.$('temp').innerHTML = todayTemperature.min + '-' + todayTemperature.max;
+			var todayWind = windInfo[0];
+			SJS.$('wind').innerHTML = todayWind.avg.speed;
 
 			var days = SJS.getElementsByClassName(SJS.$('otherDates'),'div','sub2');
 			for (var i=0,len=days.length;i<len ;i++ )
 			{
 				var dayNow = days[i];
-				var info = weatherInfo[i+1];
+				var index = i + 1;
+				var temp = temperature[index];
+				var wea = weatherInfo[index];
+				var win = windInfo[index];
 				var imgs = dayNow.getElementsByTagName('img');
-				imgs[0].setAttribute('src',info.dayPictureUrl);
-				imgs[1].setAttribute('src',info.nightPictureUrl);
-				SJS.getElementsByClassName(dayNow,'span','temp')[0].innerHTML = info.temperature;
-				SJS.getElementsByClassName(dayNow,'span','description')[0].innerHTML = info.weather;
-				SJS.getElementsByClassName(dayNow,'span','wind')[0].innerHTML = info.wind;		
+				//imgs[0].setAttribute('src',info.dayPictureUrl);
+				//imgs[1].setAttribute('src',info.nightPictureUrl);
+				
+				SJS.getElementsByClassName(dayNow,'span','temp')[0].innerHTML = temp.min + '-' + temp.max;;
+				SJS.getElementsByClassName(dayNow,'span','description')[0].innerHTML = wea.value;
+				SJS.getElementsByClassName(dayNow,'span','wind')[0].innerHTML = win.avg.speed;		
 			}				
 			
 			SJS.show(SJS.$('container'));
 			stopAnimation();
-			getPM2_5(obj.pm25);
+			getPM2_5(data.result.hourly.pm25[0].value);
 		}
 		else
 		{
