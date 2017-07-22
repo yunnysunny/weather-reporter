@@ -10,10 +10,13 @@ var errorFile = settings.loadNecessaryFile('errorFile', true);
 var traceLogger,errorLogger;
 
 log4js.configure({
-    appenders: [
-        {type: 'console',category:'console'},
-        {type: 'file', filename: errorFile, maxLogSize: 1024000, backups: 10, category: 'error'}
-    ],
+    appenders: {
+        'console':{type:'console'},
+        error:{type: 'file', filename: errorFile, maxLogSize: 1024000, backups: 10}
+    },
+    categories: { default: { appenders: ['console','error'], level: 'trace' } },
+        
+    
     replaceConsole: true
 });
 traceLogger = exports.tracelogger = log4js.getLogger('console');
