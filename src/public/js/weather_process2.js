@@ -62,7 +62,7 @@ function getWeather(longitude/*经度*/,latitude/*纬度*/) {
         latitude = latitude || point.y;
     }
     var locationStr = longitude?
-    latitude + ',' + longitude
+    latitude + ':' + longitude
     :
     signData.getAttribute('ip');
 
