@@ -116,7 +116,7 @@
  </div>
  <div id="loaderImage"></div>
   <input type="hidden" id="sign-data" ip="<%=ip%>"
-     location="<%=encodeURIComponent(location)%>" 
+     location="<%=encodeURIComponent(JSON.stringify(location))%>" 
 	 sign="<%=encodeURIComponent(sign)%>" ts="<%=ts%>" />
 
  <script language="javascript" src="js/loadding.js"></script>
