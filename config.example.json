@@ -2,5 +2,6 @@
     "port":8100,
     "errorFile":"d:/temp/log/weibo.error.log",
     "uid":"",
-    "key":""
+    "key":"",
+    "ak":"百度api密钥"
 }

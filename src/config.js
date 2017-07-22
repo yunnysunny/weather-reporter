@@ -26,5 +26,6 @@ slogger.init({
 
 exports.xinzhiUid = settings.loadNecessaryString('uid');
 exports.xinzhiKey = settings.loadNecessaryString('key');
+exports.baiduAk = settings.loadNecessaryString('ak');
 
 

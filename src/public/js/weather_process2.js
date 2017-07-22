@@ -30,7 +30,7 @@ function renderWeather(container,info) {
     var windDom = getOneElementByClassName('span','js-wind');
 
     tempDom.innerHTML = info.low + '到' + info.high + '℃';
-    var des = '';
+    // var des = '';
     var dayText = info.text_day;
     var nightText = info.text_night;
     if (dayText != nightText) {
@@ -45,9 +45,28 @@ function renderWeather(container,info) {
     windDom.innerHTML = '风力'+info.wind_scale+'级';
 }
 
-function getWeather(city) {
+function getWeather(longitude/*经度*/,latitude/*纬度*/) {
     var signData = SJS.$('sign-data');
-    var params = 'ts=' + signData.getAttribute('ts') + '&ttl=' + TTL + '&uid=' + UID + '&sig=' + signData.getAttribute('sign') + '&location=' + encodeURIComponent(city) + '&days=4&start=0';
+    var location = decodeURIComponent( signData.getAttribute('location'));
+    try {
+        location = JSON.stringify(location);
+    } catch (e) {
+        location = null;
+    }
+    var city = '未知城市';
+    if (location && location.content) {
+        var content = location.content;
+        city = content.address;
+        var point = content.point;
+        longitude = longitude || point.x;
+        latitude = latitude || point.y;
+    }
+    var locationStr = longitude?
+    latitude + ',' + longitude
+    :
+    signData.getAttribute('ip');
+
+    var params = 'ts=' + signData.getAttribute('ts') + '&ttl=' + TTL + '&uid=' + UID + '&sig=' + signData.getAttribute('sign') + '&location=' + locationStr + '&days=4&start=0';
     SJS.sendRequest('get', BASE_URL_API, params, function(data) {
 
         var obj = data.results[0];
@@ -97,5 +116,15 @@ function getPM2_5(pm25Value) {
     SJS.show(qualiteArea, 'inline');
 
 }
-
-getWeather(returnCitySN.cname);
+if("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        if (position && position.coords) {
+            var coords = position.coords;
+            getWeather(coords.longitude,coords.latitude);
+        } else {
+            getWeather();
+        }
+    });
+} else {
+    getWeather();
+}
