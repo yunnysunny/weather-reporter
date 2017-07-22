@@ -49,7 +49,7 @@ function getWeather(longitude/*经度*/,latitude/*纬度*/) {
     var signData = SJS.$('sign-data');
     var location = decodeURIComponent( signData.getAttribute('location'));
     try {
-        location = JSON.stringify(location);
+        location = JSON.parse(location);
     } catch (e) {
         location = null;
     }
