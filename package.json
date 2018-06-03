@@ -2,7 +2,9 @@
   "name": "weather-reporter",
   "version": "0.0.1",
   "scripts": {
-    "start": "node ./src/bin/www"
+    "start": "node ./src/bin/www",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "async": "^2.5.0",
@@ -12,12 +14,14 @@
     "log4js": "^2.2.0",
     "node-slogger": "^0.2.0",
     "request": "^2.81.0",
-    "serve-favicon": "^2.3.0"
+    "serve-favicon": "^2.3.0",
+    "snyk": "^1.44.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "expect.js": "^0.3.1",
     "should": "^11.1.0",
     "supertest": "^2.0.0"
-  }
+  },
+  "snyk": true
 }
