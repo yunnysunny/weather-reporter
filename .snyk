@@ -18,3 +18,6 @@ patch:
         patched: '2018-06-24T23:49:06.415Z'
     - log4js > loggly > request > hawk > cryptiles > boom > hoek:
         patched: '2018-06-24T23:49:06.415Z'
+  'npm:tunnel-agent:20170305':
+    - log4js > loggly > request > tunnel-agent:
+        patched: '2018-07-01T23:50:43.879Z'

@@ -16,7 +16,7 @@
     "node-slogger": "^0.2.0",
     "request": "^2.81.0",
     "serve-favicon": "^2.3.0",
-    "snyk": "^1.83.0"
+    "snyk": "^1.88.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
