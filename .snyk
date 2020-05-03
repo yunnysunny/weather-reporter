@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.13.5
+version: v1.14.1
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -46,3 +46,6 @@ patch:
         patched: '2019-07-07T00:37:33.300Z'
     - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
         patched: '2019-07-07T00:37:33.300Z'
+  SNYK-JS-LODASH-567746:
+    - async > lodash:
+        patched: '2020-05-03T00:37:44.531Z'
